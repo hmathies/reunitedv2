@@ -14,14 +14,14 @@ class EventForm extends Component {
     }
 
     componentDidMount() {
-        if(this.props.selectedEvent !== null) {
+        if (this.props.selectedEvent !== null) {
             this.setState({
                 event: this.props.selectedEvent
             })
         }
     }
     componentWillReceiveProps(nextProps) {
-        if(nextProps.selectedEvent !== this.props.selectedEvent) {
+        if (nextProps.selectedEvent !== this.props.selectedEvent) {
             this.setState({
                 event: nextProps.selectedEvent || emptyEvent
             })
@@ -29,56 +29,56 @@ class EventForm extends Component {
 
     }
 
-    onFormSubmit= (evt) => {
+    onFormSubmit = (evt) => {
         evt.preventDefault();
         if (this.state.event.id) {
             this.props.updateEvent(this.state.event);
         } else {
-        this.props.createEvent(this.state.event)
-  
+            this.props.createEvent(this.state.event)
+
         }
     }
     onInputChange = (evt) => {
-        const newEvent =this.state.event;
+        const newEvent = this.state.event;
         newEvent[evt.target.name] = evt.target.value//every form field has a name field which this is targeting
         this.setState({
             event: newEvent
         })
     }
     render() {
-        const {handleCancel, updateEvent} = this.props;
-        const {handleCreateEvent} = this.props;
-        const {event} = this.state;
+        const { handleCancel, updateEvent } = this.props;
+        const { handleCreateEvent } = this.props;
+        const { event } = this.state;
         return (
-        <Segment>
-            <Form onSubmit={this.onFormSubmit}>
-            <Form.Field>
-                <label>Event Title</label>
-                <input name='title' value={event.title} onChange={this.onInputChange} placeholder="Event Title" />
-            </Form.Field>
-            <Form.Field>
-                <label>Event Date</label>
-                <input name='date' value={event.date} onChange={this.onInputChange} type="date" placeholder="Event Date" />
-            </Form.Field>
-            <Form.Field>
-                <label>City</label>
-                <input name='city' value={event.city} onChange={this.onInputChange}  placeholder="City event is taking place" />
-            </Form.Field>
-            <Form.Field>
-                <label>Venue</label>
-                <input name='venue' value={event.venue} onChange={this.onInputChange}  placeholder="Enter the Venue of the event" />
-            </Form.Field>
-            <Form.Field>
-                <label>Hosted By</label>
-                <input name='hostedBy' value={event.hostedBy} onChange={this.onInputChange}  placeholder="Enter the name of person hosting" />
-            </Form.Field>
-            <Button positive type="submit"onClick={handleCreateEvent} updateEvent={updateEvent}>
-                Submit
-            </Button>
-            <Button onClick={handleCancel} type="button">Cancel</Button>
-            </Form>
-        </Segment>
+            <Segment>
+                <Form onSubmit={this.onFormSubmit}>
+                    <Form.Field>
+                        <label>Event Title</label>
+                        <input name='title' value={event.title} onChange={this.onInputChange} placeholder="Event Title" />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Event Date</label>
+                        <input name='date' value={event.date} onChange={this.onInputChange} type="date" placeholder="Event Date" />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>City</label>
+                        <input name='city' value={event.city} onChange={this.onInputChange} placeholder="City event is taking place" />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Venue</label>
+                        <input name='venue' value={event.venue} onChange={this.onInputChange} placeholder="Enter the Venue of the event" />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Hosted By</label>
+                        <input name='hostedBy' value={event.hostedBy} onChange={this.onInputChange} placeholder="Enter the name of person hosting" />
+                    </Form.Field>
+                    <Button positive type="submit" onClick={handleCreateEvent} updateEvent={updateEvent}>
+                        Submit
+                    </Button>
+                    <Button onClick={handleCancel} type="button">Cancel</Button>
+                </Form>
+            </Segment>
         );
-  }
+    }
 }
 export default EventForm;
