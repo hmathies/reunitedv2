@@ -180,7 +180,6 @@ class EventForm extends Component {
                 disabled={invalid || submitting || pristine}
                 positive
                 type="submit"
-                updateEvent={updateEvent}
               >
                 Submit
               </Button>
